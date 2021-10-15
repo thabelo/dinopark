@@ -63,8 +63,9 @@ DB_HOST="0.0.0.0"
 
 The application used Postgres
 
-Yo need to create two databases. Live and Testing database. These can be any name.
+Yo need to create two databases. Live and Testing database. The live database can be a name of choice.
 
+##### Posgres create new databases
 ```
 create database dinopark;
 create database dinopark_test;
