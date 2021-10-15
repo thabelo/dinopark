@@ -1,10 +1,10 @@
 <p align="center">
-  <a href="https://dino.bluelink.com/" target="blank"><img src="https://miro.medium.com/max/1400/0*jwIPb4cdMgMSVIKt" width="320" alt="Nest Logo" /></a>
+  <a href="http://bluelink.co.za:3000/apidoc/" target="blank"><img src="https://miro.medium.com/max/1400/0*jwIPb4cdMgMSVIKt" width="320" alt="Nest Logo" /></a>
 </p>
 
 ## Description
 
-[Dinopark](https://dino.bluelink.com) Dino Park.
+[Dinopark](http://bluelink.co.za:3000/apidoc) Dino Park.
 
 Our team divides the park into a 26 by 16 grid of zones. The letters A-Z represent the
 columns and the numbers 0-15 represent the rows. For example, A13 is the first column and
