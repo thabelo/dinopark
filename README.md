@@ -265,7 +265,7 @@ curl -X 'GET' \
 
 ## Questions/Feedback 
 
-[Questions and Feedback](https://docs.google.com/document/d/1FwF9jZfKJM_SS7eTi_S98sEn4uhX7QG9kR7mevcKWmQ/edit#heading=h.5hceptqr3pxa)
+[Questions and Feedback](https://docs.google.com/document/d/1FwF9jZfKJM_SS7eTi_S98sEn4uhX7QG9kR7mevcKWmQ)
 
 ## Support
 
