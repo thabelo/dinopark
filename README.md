@@ -1,30 +1,23 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+  <a href="https://dino.bluelink.com/" target="blank"><img src="https://miro.medium.com/max/1400/0*jwIPb4cdMgMSVIKt" width="320" alt="Nest Logo" /></a>
 </p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Dinopark](https://dino.bluelink.com) Dino Park.
+
+Our team divides the park into a 26 by 16 grid of zones. The letters A-Z represent the
+columns and the numbers 0-15 represent the rows. For example, A13 is the first column and
+the 14 th row.
+
+* Each zone in the grid needs maintenance every 30 days.
+
+* Maintenance staff can only perform maintenance in a zone when it is safe to do so
+
+> * Safe means: No carnivores are in a zone or all carnivores in the zone are still
+digesting their last meal (all dinosaurs in the park have an estimated digestion time
+which is logged when the animal is first moved into the park)
+
 
 ## Installation
 
@@ -48,26 +41,231 @@ $ npm run start:prod
 ## Test
 
 ```bash
-# unit tests
+# Intergration tests
 $ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
+## Database Setup
+Create a postgress database and allow connection to your defined user on the .env file.
+
+### Tables
+You do not need to add tables, Typeorm will create necessary tables when applications start and will persist once created.
+
+.env defaults (You can change this to match your db and server)
+```
+ZONE_MAINTANACE_INTERVAL=30
+DB_USER=root
+DB_PASS=root
+DB_NAME=dinopark
+DB_HOST="0.0.0.0"
+```
+
+#### Database setup
+
+The application used Postgres
+
+Yo need to create two databases. Live and Testing database. These can be any name.
+
+```
+create database dinopark;
+create database dinopark_test;
+```
+The connection details can be managed on the .env file
+
+## API References 
+
+<details>
+  <summary>Create new dino</summary>
+  
+##### Request
+
+```
+curl -X 'POST' \
+  'http://0.0.0.0:3000/api/dinos' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '
+  {
+    "name": "McGroggity Test 1",
+    "species": "Tyrannosaurus Test 1",
+    "gender": "male",
+    "digestion_period_in_hours": 2,
+    "herbivore": false,
+    "location": "A3",
+    "park_id": 1
+  }'
+```
+
+#### Response body
+```
+{
+  "id": 1,
+  "name": "McGroggity Test 1",
+  "species": "Tyrannosaurus Test 1",
+  "gender": "male",
+  "digestion_period_in_hours": 2,
+  "herbivore": false,
+  "location": "A3",
+  "park_id": 1,
+  "kind": "dino_added"
+}
+```
+</details>
+
+<details>
+  <summary>Get all dinos</summary>
+
+#### Request
+```
+curl -X 'GET' \
+  'http://0.0.0.0:3000/api/dinos' \
+  -H 'accept: application/json'
+```
+
+#### Response
+```
+[
+  {
+    "id": 1,
+    "name": "McGroggity Test 1",
+    "species": "Tyrannosaurus Test 1",
+    "gender": "male",
+    "digestion_period_in_hours": 2,
+    "herbivore": false,
+    "location": "A3",
+    "park_id": 1
+  },
+  {
+    "id": 2,
+    "name": "McGroggity Test 2",
+    "species": "Tyrannosaurus Test 2",
+    "gender": "male",
+    "digestion_period_in_hours": 2,
+    "herbivore": false,
+    "location": "A3",
+    "park_id": 1
+  }
+]
+```
+</details>
+  
+<details>
+  <summary>Update dino location</summary>
+
+#### Request
+```
+curl -X 'PATCH' \
+  'http://0.0.0.0:3000/api/dinos/25' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "location": "A0",
+  "park_id": 1
+}'
+```
+  
+#### Response
+```
+{
+  "location": "A0",
+  "park_id": 1,
+  "kind": "dino_location_updated",
+  "dinosaur_id": 25,
+  "time": "2021-10-15T03:26:39.898Z"
+}
+```
+</details>
+
+<details>
+  <summary>Feed dino</summary>
+
+#### Request 
+```
+curl -X 'PATCH' \
+  'http://0.0.0.0:3000/api/dinos/feed/25' \
+  -H 'accept: application/json'
+```
+  
+#### Response
+```
+{
+  "location": "A0",
+  "park_id": 1,
+  "kind": "dino_fed",
+  "dinosaur_id": 25,
+  "time": "2021-10-15T03:28:07.577Z"
+}
+```
+</details>
+
+<details>
+  <summary>Zone maintanance</summary>
+
+#### Request
+```
+curl -X 'POST' \
+  'http://0.0.0.0:3000/api/dinos/maintanance' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "location": "A0",
+  "park_id": 1
+}'
+```
+
+#### Response
+```
+{
+  "location": "A0",
+  "park_id": 1,
+  "kind": "maintenance_performed",
+  "time": "2021-10-15T03:31:20.212Z"
+}
+```
+</details>
+
+<details>
+  <summary>Log feed </summary>
+
+#### Request
+```
+curl -X 'GET' \
+  'http://0.0.0.0:3000/api/logs/feed' \
+  -H 'accept: */*'
+```
+
+#### Response
+```
+[
+  {
+    "name": "McGroggity Test 1",
+    "species": "Tyrannosaurus Test 1",
+    "gender": "male",
+    "digestion_period_in_hours": 2,
+    "location": "A3",
+    "park_id": 1,
+    "kind": "dino_added",
+    "dinosaur_id": 22,
+    "time": "2021-10-14T16:28:45.722Z"
+  },
+  {
+    "name": "McGroggity Test 2",
+    "species": "Tyrannosaurus Test 2",
+    "gender": "male",
+    "digestion_period_in_hours": 2,
+    "location": "A3",
+    "park_id": 1,
+    "kind": "dino_added",
+    "dinosaur_id": 23,
+    "time": "2021-10-14T16:28:57.601Z"
+  }
+]
+```
+</details>
+
+## Questions/Feedback 
+
+[Questions and Feedback](https://docs.google.com/document/d/1FwF9jZfKJM_SS7eTi_S98sEn4uhX7QG9kR7mevcKWmQ/edit#heading=h.5hceptqr3pxa)
 
 ## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+if you have any questions please sens me an email thabelo@gmail.com
