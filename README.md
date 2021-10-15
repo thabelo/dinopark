@@ -41,7 +41,7 @@ $ npm run start:prod
 ## Test
 
 ```bash
-# unit tests
+# Intergration tests
 $ npm run test
 ```
 
