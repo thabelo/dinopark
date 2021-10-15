@@ -58,6 +58,19 @@ DB_PASS=root
 DB_NAME=dinopark
 DB_HOST="0.0.0.0"
 ```
+
+#### Database setup
+
+The application used Postgres
+
+Yo need to create two databases. Live and Testing database. These can be any name.
+
+```
+create database dinopark;
+create database dinopark_test;
+```
+The connection details can be managed on the .env file
+
 ## API References 
 
 <details>
