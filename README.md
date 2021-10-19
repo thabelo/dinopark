@@ -269,4 +269,4 @@ curl -X 'GET' \
 
 ## Support
 
-if you have any questions please send me an email thabelo@gmail.com
+If you have any questions please send me an email thabelo@gmail.com
