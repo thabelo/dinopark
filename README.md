@@ -63,7 +63,7 @@ DB_HOST="0.0.0.0"
 
 The application used Postgres
 
-Yo need to create two databases. Live and Testing database. The live database can be a name of choice.
+You need to create two databases. Live and Testing database. The live database can be a name of choice.
 
 ##### Posgres create new databases
 ```
@@ -269,4 +269,4 @@ curl -X 'GET' \
 
 ## Support
 
-if you have any questions please sens me an email thabelo@gmail.com
+if you have any questions please send me an email thabelo@gmail.com
