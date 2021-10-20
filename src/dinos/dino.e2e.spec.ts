@@ -20,16 +20,17 @@ describe('Dinos', () => {
         const module = await Test.createTestingModule({
         imports: [ 
             ConfigModule.forRoot(),
-            TypeOrmModule.forRoot({
-            type: 'postgres',
-            host: '0.0.0.0',
-            port: 5432,
-            username: 'root',
-            password: 'root',
-            database: 'dinopark_test',
-            entities: ['src/**/*{.ts, .js}'],
-            keepConnectionAlive: true
-            }), 
+                TypeOrmModule.forRoot({
+                type: 'postgres',
+                host: '0.0.0.0',
+                port: 5432,
+                username: 'root',
+                password: 'root',
+                database: 'dinopark_test',
+                entities: ['src/**/*{.ts, .js}'],
+                keepConnectionAlive: true,
+                synchronize: true,
+            }),
             DinosModule,
             LogsModule,
             ZonesModule 
